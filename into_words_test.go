@@ -2,9 +2,22 @@ package inflect
 
 import "testing"
 
+func TestZero(t *testing.T) {
+	got, err := IntoWords(0)
+	if err != nil {
+		t.Errorf("It wasn't expected any error, got '%s'", err.Error())
+	}
+	if got != zero {
+		t.Errorf("Expected '%s' got '%s'", zero, got)
+	}
+}
+
 func TestUnits(t *testing.T) {
-	for value, expected := range units {
-		got, err := IntoWords(float64(value))
+	for i, expected := range units {
+		if i == 0 {
+			continue
+		}
+		got, err := IntoWords(float64(i))
 		if err != nil {
 			t.Errorf("It wasn't expected any error, got '%s'", err.Error())
 		}
@@ -39,7 +52,7 @@ func TestTens(t *testing.T) {
 }
 
 func TestHundreds(t *testing.T) {
-	hundreds := []string{"",
+	hundreds := []string{zero,
 		"one hundred",
 		"two hundred",
 		"three hundred",

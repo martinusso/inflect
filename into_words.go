@@ -10,6 +10,7 @@ const (
 	andSeparator          = "and"
 	point                 = "point"
 	minus                 = "Minus"
+	zero                  = "zero"
 	hundred               = "hundred"
 
 	comma = ","
@@ -49,8 +50,11 @@ var (
 
 // IntoWords convert numbers (float64) to words
 func IntoWords(number float64) (string, error) {
-	words := []string{}
+	if number == 0 {
+		return zero, nil
+	}
 
+	words := []string{}
 	// Minus
 	if number < 0 {
 		words = append(words, minus)
