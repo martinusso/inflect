@@ -1,4 +1,4 @@
 /*
-Package inflect convert numbers to words
+Package inflect generate plurals of nouns and convert numbers to words
 */
 package inflect
