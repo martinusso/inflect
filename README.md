@@ -19,6 +19,18 @@ got := IntoWords(-147)
 // got -> Minus one hundred and forty-seven
 ```
 
+## Plural("word") `func Plural(word string) string`
+
+Plural generates the plurals of nouns
+
+```go
+got := Plural("word")
+// got -> words
+
+got := Plural("noun")
+// got -> nouns
+```
+
 ## License
 
 This software is open source, licensed under the The MIT License (MIT). See [LICENSE](https://github.com/martinusso/inflect/blob/master/LICENSE) for details.
