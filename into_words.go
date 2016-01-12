@@ -6,12 +6,11 @@ import (
 )
 
 const (
-	unsupportedValueError = "Unsupported value to be written out in words."
-	andSeparator          = "and"
-	point                 = "point"
-	minus                 = "Minus"
-	zero                  = "zero"
-	hundred               = "hundred"
+	andSeparator = "and"
+	point        = "point"
+	minus        = "Minus"
+	zero         = "zero"
+	hundred      = "hundred"
 
 	comma = ","
 )
@@ -49,9 +48,9 @@ var (
 )
 
 // IntoWords convert numbers (float64) to words
-func IntoWords(number float64) (string, error) {
+func IntoWords(number float64) string {
 	if number == 0 {
-		return zero, nil
+		return zero
 	}
 
 	words := []string{}
@@ -73,7 +72,7 @@ func IntoWords(number float64) (string, error) {
 		words = append(words, fracIntoWords...)
 	}
 
-	return sanitize(words), nil
+	return sanitize(words)
 }
 
 func writeOutNumbersInWords(n float64) []string {

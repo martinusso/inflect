@@ -10,12 +10,12 @@
 Convert numbers (float64) to words
 
 ```go
-got, _ := IntoWords(42)
+got := IntoWords(42)
 // got -> forty-two
 ```
 
 ```go
-got, _ := IntoWords(-147)
+got := IntoWords(-147)
 // got -> Minus one hundred and forty-seven
 ```
 

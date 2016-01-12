@@ -3,10 +3,7 @@ package inflect
 import "testing"
 
 func TestZero(t *testing.T) {
-	got, err := IntoWords(0)
-	if err != nil {
-		t.Errorf("It wasn't expected any error, got '%s'", err.Error())
-	}
+	got := IntoWords(0)
 	if got != zero {
 		t.Errorf("Expected '%s' got '%s'", zero, got)
 	}
@@ -17,10 +14,7 @@ func TestUnits(t *testing.T) {
 		if i == 0 {
 			continue
 		}
-		got, err := IntoWords(float64(i))
-		if err != nil {
-			t.Errorf("It wasn't expected any error, got '%s'", err.Error())
-		}
+		got := IntoWords(float64(i))
 		if got != expected {
 			t.Errorf("Expected '%s' got '%s'", expected, got)
 		}
@@ -29,10 +23,7 @@ func TestUnits(t *testing.T) {
 
 func TestTeens(t *testing.T) {
 	for value, expected := range teens {
-		got, err := IntoWords(float64(value))
-		if err != nil {
-			t.Errorf("It wasn't expected any error, got '%s'", err.Error())
-		}
+		got := IntoWords(float64(value))
 		if got != expected {
 			t.Errorf("Expected '%s' got '%s'", expected, got)
 		}
@@ -41,10 +32,7 @@ func TestTeens(t *testing.T) {
 
 func TestTens(t *testing.T) {
 	for value, expected := range tens {
-		got, err := IntoWords(float64(value))
-		if err != nil {
-			t.Errorf("It wasn't expected any error, got '%s'", err.Error())
-		}
+		got := IntoWords(float64(value))
 		if got != expected {
 			t.Errorf("Expected '%s' got '%s'", expected, got)
 		}
@@ -64,10 +52,7 @@ func TestHundreds(t *testing.T) {
 		"nine hundred"}
 
 	for value, expected := range hundreds {
-		got, err := IntoWords(float64(value * 100))
-		if err != nil {
-			t.Errorf("It wasn't expected any error, got '%s'", err.Error())
-		}
+		got := IntoWords(float64(value * 100))
 		if got != expected {
 			t.Errorf("Expected '%s' got '%s'", expected, got)
 		}
@@ -81,10 +66,7 @@ func TestUpThousand(t *testing.T) {
 	}
 
 	for key, value := range upThousands {
-		got, err := IntoWords(key)
-		if err != nil {
-			t.Errorf("It wasn't expected any error, got '%s'", err.Error())
-		}
+		got := IntoWords(key)
 		if got != value {
 			t.Errorf("Expected '%s' got '%s'", value, got)
 		}
@@ -99,10 +81,7 @@ func TestFraction(t *testing.T) {
 	}
 
 	for key, value := range upThousands {
-		got, err := IntoWords(key)
-		if err != nil {
-			t.Errorf("It wasn't expected any error, got '%s'", err.Error())
-		}
+		got := IntoWords(key)
 		if got != value {
 			t.Errorf("Expected '%s' got '%s'", value, got)
 		}
@@ -111,11 +90,7 @@ func TestFraction(t *testing.T) {
 
 func TestNegativeValue(t *testing.T) {
 	expected := "Minus one hundred and forty-seven"
-	got, err := IntoWords(-147)
-
-	if err != nil {
-		t.Errorf("It wasn't expected any error, got '%s'", err.Error())
-	}
+	got := IntoWords(-147)
 	if got != expected {
 		t.Errorf("Expected '%s' got '%s'", expected, got)
 	}
