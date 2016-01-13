@@ -94,8 +94,7 @@ var (
 		"this":   "these",
 		"tooth":  "teeth",
 		"woman":  "women",
-
-		"ox": "oxen",
+		"ox":     "oxen",
 
 		// ending in f, fe
 		"belief":       "beliefs",
@@ -115,38 +114,21 @@ var (
 		"safe":         "safes",
 		"turf":         "turfs", // turves is acceptable
 
-		// ending in o
-		"albino":    "albinos",
-		"armadillo": "armadillos",
-		"auto":      "autos",
-		"cameo":     "cameos",
-		"cello":     "cellos",
-		"combo":     "combos",
-		"duo":       "duos",
-		"ego":       "egos",
-		"folio":     "folios",
-		"halo":      "halos",
-		"inferno":   "infernos",
-		"kangaroo":  "kangaroos",
-		"lasso":     "lassos",
-		"memento":   "mementos",
-		"memo":      "memos",
-		"piano":     "pianos",
-		"photo":     "photos",
-		"portfolio": "portfolios",
-		"pro":       "pros",
-		"silo":      "silos",
-		"solo":      "solos",
-		"stereo":    "stereos",
-		"studio":    "studios",
-		"taco":      "tacos",
-		"tattoo":    "tattoos",
-		"tuxedo":    "tuxedos",
-		"typo":      "typos",
-		"veto":      "vetoes",
-		"video":     "videos",
-		"yo":        "yos",
-		"zoo":       "zoos",
+		// ending in o +es
+		"buffalo":  "buffaloes",
+		"cargo":    "cargoes",
+		"echo":     "echoes",
+		"embargo":  "embargoes",
+		"grotto":   "grottoes",
+		"hero":     "heroes",
+		"mosquito": "mosquitoes",
+		"motto":    "mottoes",
+		"potato":   "potatoes",
+		"tomato":   "tomatoes",
+		"torpedo":  "torpedoes",
+		"veto":     "vetoes",
+		"volcano":  "volcanoes",
+		"zero":     "zeroes",
 
 		"quiz": "quizzes",
 
@@ -164,6 +146,7 @@ var (
 		"phenomenon": "phenomena",
 		"polyhedron": "polyhedra",
 
+		// ending with um
 		"album":   "albums",
 		"stadium": "stadiums",
 
@@ -172,7 +155,6 @@ var (
 		"vortex":   "vortices",
 
 		"soliloquy": "soliloquies",
-		"money":     "monies",
 		"graffito":  "graffiti",
 		"trilby":    "trilbys",
 		"numen":     "numina",
@@ -181,43 +163,39 @@ var (
 		"rom":       "roma",
 		"carmen":    "carmina",
 
-		"cactus":   "cacti", // cactuses is acceptable
-		"focus":    "foci",
-		"fungus":   "fungi",
-		"nucleus":  "nuclei",
-		"syllabus": "syllabi",
-
-		"analysis":    "analyses",
-		"axis":        "axes",
-		"basis":       "bases",
-		"crisis":      "crises",
-		"diagnosis":   "diagnoses",
-		"ellipsis":    "ellipses",
-		"emphasis":    "emphases",
-		"hypothesis":  "hypotheses",
-		"neurosis":    "neuroses",
-		"oasis":       "oases",
-		"parenthesis": "parentheses",
-		"paralysis":   "paralyses",
-		"synopsis":    "synopses",
-		"synthesis":   "syntheses",
-		"thesis":      "theses",
-
-		"datum": "data",
-
-		"genus":    "genera",
-		"mythos":   "mythoi",
-		"testis":   "testes",
-		"yes":      "yeses",
-		"octopus":  "octopuses", // octopi is acceptable
-		"genie":    "genies",
-		"ganglion": "ganglia",
-		"occiput":  "occipita",
-		"corpus":   "corpora",
-		"opus":     "opera",
-		"penis":    "penes",
-		"atlas":    "atlases",
-
+		"cactus":       "cacti", // cactuses is acceptable
+		"focus":        "foci",
+		"fungus":       "fungi",
+		"nucleus":      "nuclei",
+		"syllabus":     "syllabi",
+		"analysis":     "analyses",
+		"axis":         "axes",
+		"basis":        "bases",
+		"crisis":       "crises",
+		"diagnosis":    "diagnoses",
+		"ellipsis":     "ellipses",
+		"emphasis":     "emphases",
+		"hypothesis":   "hypotheses",
+		"neurosis":     "neuroses",
+		"oasis":        "oases",
+		"parenthesis":  "parentheses",
+		"paralysis":    "paralyses",
+		"synopsis":     "synopses",
+		"synthesis":    "syntheses",
+		"thesis":       "theses",
+		"datum":        "data",
+		"genus":        "genera",
+		"mythos":       "mythoi",
+		"testis":       "testes",
+		"yes":          "yeses",
+		"octopus":      "octopuses", // octopi is acceptable
+		"genie":        "genies",
+		"ganglion":     "ganglia",
+		"occiput":      "occipita",
+		"corpus":       "corpora",
+		"opus":         "opera",
+		"penis":        "penes",
+		"atlas":        "atlases",
 		"CamelOctopus": "CamelOctopi",
 		"ley":          "leyes",
 	}
@@ -231,29 +209,24 @@ func Plural(word string) string {
 
 	switch {
 	case endWithConsonantPlusY(word):
-		// Most nouns that end in a consonant and y, y becomes ies
 		return word[:len(word)-1] + "ies"
+
 	case endIn(word, "f"):
-		// Most nouns that end in f ,	f becomes ves
 		return word[:len(word)-1] + "ves"
+
 	case endIn(word, "fe"):
-		// Most nouns that end in fe,	fe becomes ves
 		return word[:len(word)-2] + "ves"
+
 	case endIn(word, "um"):
-		// Most nouns that end in um. Change final 'um' to 'a'
 		return word[:len(word)-2] + "a"
+
 	case endIn(word, "on"):
-		// Nouns ending in -on becoming -a
 		return word[:len(word)-2] + "a"
-	case endIn(word, "o"):
-		// Ends with 'o'	Add 'es'
-		return word + "es"
+
 	case endIn(word, "ch", "sh", "s", "x", "z"):
-		// Most nouns that end in ch, sh, s, x, or z	add es
 		return word + "es"
+
 	default:
-		// Most nouns make their plurals by simply adding –s to the end
-		// Most nouns that end in a vowel and y, add s
 		return word + "s"
 	}
 }
@@ -272,11 +245,4 @@ func endWithConsonantPlusY(word string) bool {
 		return false
 	}
 	return IsConsonant(word[len(word)-2 : len(word)-1])
-}
-
-func endWithVowelPlusY(word string) bool {
-	if !strings.HasSuffix(strings.ToUpper(word), "Y") {
-		return false
-	}
-	return IsVowel(word[len(word)-2 : len(word)-1])
 }
