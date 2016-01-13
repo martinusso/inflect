@@ -28,6 +28,18 @@ func TestPluralAddingSToTheEnd(t *testing.T) {
 		"blouse":     "blouses",
 		"mongoose":   "mongooses",
 		"fuse":       "fuses",
+
+		"agenda":    "agendas",
+		"alfalfa":   "alfalfas",
+		"aurora":    "auroras",
+		"banana":    "bananas",
+		"barracuda": "barracudas",
+		"cornea":    "corneas",
+		"nova":      "novas",
+		"phobia":    "phobias",
+
+		"balloon": "balloons",
+		"carton":  "cartons",
 	}
 
 	for s, p := range nouns {
@@ -265,20 +277,6 @@ func TestPluralEndingWithO(t *testing.T) {
 		"tattoo":    "tattoos",
 		"video":     "videos",
 		"zoo":       "zoos",
-	}
-	for s, p := range nouns {
-		got := Pluralize(s)
-		if got != p {
-			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
-		}
-	}
-}
-
-func TestPluralEndingWithOn(t *testing.T) {
-	nouns := map[string]string{
-		"criterion":  "criteria",
-		"phenomenon": "phenomena",
-		"automaton":  "automata",
 	}
 	for s, p := range nouns {
 		got := Pluralize(s)
