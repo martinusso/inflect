@@ -333,6 +333,18 @@ func TestPluralEndingWithSis(t *testing.T) {
 	}
 }
 
+func TestPluralEndingWithXis(t *testing.T) {
+	nouns := map[string]string{
+		"axis": "axes",
+	}
+	for s, p := range nouns {
+		got := Pluralize(s)
+		if got != p {
+			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
+		}
+	}
+}
+
 func TestPluralIrregularNouns(t *testing.T) {
 	for s, p := range irregular {
 		got := Pluralize(s)

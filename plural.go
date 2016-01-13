@@ -189,10 +189,10 @@ var (
 		"rhombus": "rhombuses",
 		"walrus":  "walruses",
 
-		"datum":        "data",
-		"mythos":       "mythoi",
-		"testis":       "testes",
-		"axis":         "axes",
+		"datum":  "data",
+		"mythos": "mythoi",
+		"testis": "testes",
+
 		"yes":          "yeses",
 		"genie":        "genies",
 		"ganglion":     "ganglia",
@@ -225,6 +225,9 @@ func Pluralize(word string) string {
 
 	case endIn(word, "sis"):
 		return word[:len(word)-3] + "ses"
+
+	case endIn(word, "xis"):
+		return word[:len(word)-3] + "xes"
 
 	case endIn(word, "ch", "sh", "s", "x", "z"):
 		return word + "es"
