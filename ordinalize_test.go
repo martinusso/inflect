@@ -1,12 +1,9 @@
 package inflect
 
-import (
-	"strconv"
-	"testing"
-)
+import "testing"
 
-var (
-	ordinals = map[int]string{
+func TestOrdinalize(t *testing.T) {
+	ordinals := map[int]string{
 		1: "1st", 2: "2nd", 3: "3rd", 4: "4th", 5: "5th", 6: "6th", 7: "7th", 8: "8th", 9: "9th",
 		10: "10th", 11: "11th", 12: "12th", 13: "13th", 14: "14th", 15: "15th", 16: "16th", 17: "17th", 18: "18th", 19: "19th",
 		20: "20th", 21: "21st", 22: "22nd", 23: "23rd", 24: "24th", 25: "25th", 26: "26th", 27: "27th", 28: "28th", 29: "29th",
@@ -17,20 +14,8 @@ var (
 		10000: "10000th", 10001: "10001st", 10002: "10002nd", 10003: "10003rd", 10004: "10004th",
 		100000: "100000th", 100001: "100001st", 100002: "100002nd", 100003: "100003rd", 100004: "100004th",
 	}
-)
-
-func TestOrdinalize(t *testing.T) {
 	for k, expected := range ordinals {
 		got := Ordinalize(k)
-		if got != expected {
-			t.Errorf("Expected '%s' got '%s'", expected, got)
-		}
-	}
-}
-
-func TestOrdinalizeStr(t *testing.T) {
-	for k, expected := range ordinals {
-		got := OrdinalizeStr(strconv.Itoa(k))
 		if got != expected {
 			t.Errorf("Expected '%s' got '%s'", expected, got)
 		}
