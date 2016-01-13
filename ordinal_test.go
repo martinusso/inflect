@@ -4,10 +4,8 @@ import "testing"
 
 func TestOrdinal(t *testing.T) {
 	ordinals := map[int]string{
-		1: "st",
-		2: "nd",
-		3: "rd",
-		4: "th", 5: "th", 6: "th", 7: "th", 8: "th", 9: "th",
+		-1: "st", 0: "th",
+		1: "st", 2: "nd", 3: "rd", 4: "th", 5: "th", 6: "th", 7: "th", 8: "th", 9: "th",
 		10: "th", 11: "th", 12: "th", 13: "th", 14: "th", 15: "th", 16: "th", 17: "th", 18: "th", 19: "th",
 		20: "th", 21: "st", 22: "nd", 23: "rd", 24: "th", 25: "th", 26: "th", 27: "th", 28: "th", 29: "th",
 		30: "th", 31: "st", 32: "nd", 33: "rd", 34: "th", 35: "th", 36: "th", 37: "th", 38: "th", 39: "th",

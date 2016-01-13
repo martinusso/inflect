@@ -1,5 +1,7 @@
 package inflect
 
+import "math"
+
 const (
 	st = "st"
 	nd = "nd"
@@ -9,11 +11,11 @@ const (
 
 // Ordinal returns the suffix that should be added to a number to denote the position in an ordered sequence such as 1st, 2nd, 3rd, 4th...
 func Ordinal(number int) string {
-	switch number % 100 {
+	switch abs(number) % 100 {
 	case 11, 12, 13:
 		return th
 	default:
-		switch number % 10 {
+		switch abs(number) % 10 {
 		case 1:
 			return st
 		case 2:
@@ -23,4 +25,8 @@ func Ordinal(number int) string {
 		}
 	}
 	return th
+}
+
+func abs(number int) int {
+	return int(math.Abs(float64(number)))
 }
