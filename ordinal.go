@@ -9,14 +9,16 @@ const (
 	th = "th"
 )
 
-// Ordinal returns the suffix that should be added to a number to denote the position in an ordered sequence such as 1st, 2nd, 3rd, 4th...
-//
-// Ordinal(1)     => "st"
-// Ordinal(2)     => "nd"
-// Ordinal(1002)  => "nd"
-// Ordinal(1003)  => "rd"
-// Ordinal(-11)   => "th"
-// Ordinal(-1021) => "st"
+/*
+Ordinal returns the suffix that should be added to a number to denote the position in an ordered sequence such as 1st, 2nd, 3rd, 4th...
+
+	Ordinal(1)     => "st"
+	Ordinal(2)     => "nd"
+	Ordinal(1002)  => "nd"
+	Ordinal(1003)  => "rd"
+	Ordinal(-11)   => "th"
+	Ordinal(-1021) => "st"
+*/
 func Ordinal(number int) string {
 	switch abs(number) % 100 {
 	case 11, 12, 13:
