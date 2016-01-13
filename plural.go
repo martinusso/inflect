@@ -130,6 +130,7 @@ var (
 		"volcano":  "volcanoes",
 		"zero":     "zeroes",
 
+		// special case for ending with Y
 		"quiz": "quizzes",
 
 		"alga":     "algae",
@@ -146,47 +147,36 @@ var (
 		"phenomenon": "phenomena",
 		"polyhedron": "polyhedra",
 
-		// ending with um
+		// ending with UM
 		"album":   "albums",
 		"stadium": "stadiums",
+
+		// ending with Y
+		"soliloquy": "soliloquies",
+		"trilby":    "trilbys",
 
 		"appendix": "appendices", // appendixes is acceptable
 		"vertex":   "vertices",
 		"vortex":   "vortices",
 
-		"soliloquy": "soliloquies",
-		"graffito":  "graffiti",
-		"trilby":    "trilbys",
-		"numen":     "numina",
-		"atman":     "atmas",
-		"lowlife":   "lowlifes",
-		"rom":       "roma",
-		"carmen":    "carmina",
+		"graffito": "graffiti",
+		"numen":    "numina",
+		"atman":    "atmas",
+		"lowlife":  "lowlifes",
+		"rom":      "roma",
+		"carmen":   "carmina",
 
-		"cactus":       "cacti", // cactuses is acceptable
-		"focus":        "foci",
-		"fungus":       "fungi",
-		"nucleus":      "nuclei",
-		"syllabus":     "syllabi",
-		"analysis":     "analyses",
-		"axis":         "axes",
-		"basis":        "bases",
-		"crisis":       "crises",
-		"diagnosis":    "diagnoses",
-		"ellipsis":     "ellipses",
-		"emphasis":     "emphases",
-		"hypothesis":   "hypotheses",
-		"neurosis":     "neuroses",
-		"oasis":        "oases",
-		"parenthesis":  "parentheses",
-		"paralysis":    "paralyses",
-		"synopsis":     "synopses",
-		"synthesis":    "syntheses",
-		"thesis":       "theses",
+		"cactus":   "cacti", // cactuses is acceptable
+		"focus":    "foci",
+		"fungus":   "fungi",
+		"nucleus":  "nuclei",
+		"syllabus": "syllabi",
+
 		"datum":        "data",
 		"genus":        "genera",
 		"mythos":       "mythoi",
 		"testis":       "testes",
+		"axis":         "axes",
 		"yes":          "yeses",
 		"octopus":      "octopuses", // octopi is acceptable
 		"genie":        "genies",
@@ -222,6 +212,9 @@ func Pluralize(word string) string {
 
 	case endIn(word, "on"):
 		return word[:len(word)-2] + "a"
+
+	case endIn(word, "sis"):
+		return word[:len(word)-3] + "ses"
 
 	case endIn(word, "ch", "sh", "s", "x", "z"):
 		return word + "es"

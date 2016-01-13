@@ -30,10 +30,10 @@ func TestPluralAddingSToTheEnd(t *testing.T) {
 		"fuse":       "fuses",
 	}
 
-	for word, expected := range nouns {
-		got := Pluralize(word)
-		if got != expected {
-			t.Errorf("Expected '%s' got '%s'", expected, got)
+	for s, p := range nouns {
+		got := Pluralize(s)
+		if got != p {
+			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
 		}
 	}
 }
@@ -115,7 +115,7 @@ func TestPluralMostNounsThatEndIn_ch_sh_s_x_z(t *testing.T) {
 	for s, p := range nouns {
 		got := Pluralize(s)
 		if got != p {
-			t.Errorf("Expected '%s' got '%s'", p, got)
+			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
 		}
 	}
 }
@@ -171,7 +171,7 @@ func TestPluralEndingWithConsonantPlusY(t *testing.T) {
 	for s, p := range nouns {
 		got := Pluralize(s)
 		if got != p {
-			t.Errorf("Expected '%s' got '%s'", p, got)
+			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
 		}
 	}
 }
@@ -201,7 +201,7 @@ func TestPluralEndingWithVowelPlusY(t *testing.T) {
 	for s, p := range nouns {
 		got := Pluralize(s)
 		if got != p {
-			t.Errorf("Expected '%s' got '%s'", p, got)
+			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
 		}
 	}
 }
@@ -227,7 +227,7 @@ func TestPluralEndingWithFeOrF(t *testing.T) {
 	for s, p := range nouns {
 		got := Pluralize(s)
 		if got != p {
-			t.Errorf("Expected '%s' got '%s'", p, got)
+			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
 		}
 	}
 }
@@ -269,7 +269,7 @@ func TestPluralEndingWithO(t *testing.T) {
 	for s, p := range nouns {
 		got := Pluralize(s)
 		if got != p {
-			t.Errorf("Expected '%s' got '%s'", p, got)
+			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
 		}
 	}
 }
@@ -283,7 +283,7 @@ func TestPluralEndingWithOn(t *testing.T) {
 	for s, p := range nouns {
 		got := Pluralize(s)
 		if got != p {
-			t.Errorf("Expected '%s' got '%s'", p, got)
+			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
 		}
 	}
 }
@@ -305,7 +305,32 @@ func TestPluralEndingWithUm(t *testing.T) {
 	for s, p := range nouns {
 		got := Pluralize(s)
 		if got != p {
-			t.Errorf("Expected '%s' got '%s'", p, got)
+			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
+		}
+	}
+}
+
+func TestPluralEndingWithSis(t *testing.T) {
+	nouns := map[string]string{
+		"analysis":    "analyses",
+		"basis":       "bases",
+		"crisis":      "crises",
+		"diagnosis":   "diagnoses",
+		"ellipsis":    "ellipses",
+		"emphasis":    "emphases",
+		"hypothesis":  "hypotheses",
+		"neurosis":    "neuroses",
+		"oasis":       "oases",
+		"parenthesis": "parentheses",
+		"paralysis":   "paralyses",
+		"synopsis":    "synopses",
+		"synthesis":   "syntheses",
+		"thesis":      "theses",
+	}
+	for s, p := range nouns {
+		got := Pluralize(s)
+		if got != p {
+			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
 		}
 	}
 }
@@ -314,7 +339,7 @@ func TestPluralIrregularNouns(t *testing.T) {
 	for s, p := range irregular {
 		got := Pluralize(s)
 		if got != p {
-			t.Errorf("Expected '%s' got '%s'", p, got)
+			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
 		}
 	}
 }
