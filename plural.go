@@ -232,6 +232,9 @@ func Pluralize(word string) string {
 	case endIn(word, "um"):
 		return word[:len(word)-2] + "a"
 
+	case endIn(word, "psis"):
+		return word[:len(word)-3] + "ses"
+
 	case endIn(word, "sis"):
 		return word[:len(word)-3] + "ses"
 

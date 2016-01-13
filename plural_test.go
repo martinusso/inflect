@@ -335,6 +335,35 @@ func TestPluralEndingWithUm(t *testing.T) {
 	}
 }
 
+func TestPluralEndingWithPsis(t *testing.T) {
+	nouns := map[string]string{
+		"antisepsis":     "antisepses",
+		"apoapsis":       "apoapses",
+		"apsis":          "apses",
+		"asepsis":        "asepses",
+		"asynapsis":      "asynapses",
+		"caryopsis":      "caryopses",
+		"coreopsis":      "coreopses",
+		"ellipsis":       "ellipses",
+		"omphaloskepsis": "omphaloskepses",
+		"prolepsis":      "prolepses",
+		"psis":           "pses",
+		"sepsis":         "sepses",
+		"skepsis":        "skepses",
+		"stereopsis":     "stereopses",
+		"stypsis":        "stypses",
+		"syllepsis":      "syllepses",
+		"synapsis":       "synapses",
+		"synopsis":       "synopses",
+	}
+	for s, p := range nouns {
+		got := Pluralize(s)
+		if got != p {
+			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
+		}
+	}
+}
+
 func TestPluralEndingWithSis(t *testing.T) {
 	nouns := map[string]string{
 		"analysis":    "analyses",
