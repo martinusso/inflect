@@ -6,8 +6,8 @@ package inflect
 import "strings"
 
 var (
-	irregular = map[string]string{
-		// A few nouns have the same singular and plural forms
+	// It´s already plural
+	pluralForms = map[string]string{
 		"athletics":       "athletics",
 		"barracks":        "barracks",
 		"bellows":         "bellows",
@@ -55,8 +55,10 @@ var (
 		"wages":           "wages",
 		"wits":            "wits",
 		"words":           "words",
+	}
 
-		// Singular and plural are the same
+	// Singular and plural are the same
+	singularForms = map[string]string{
 		"advice":      "advice",
 		"aircraft":    "aircraft",
 		"bison":       "bison",
@@ -80,8 +82,9 @@ var (
 		"swine":       "swine",
 		"trout":       "trout",
 		"wheat":       "wheat",
-
-		// Irregular Plurals of Nouns
+	}
+	// Irregular Plurals of Nouns
+	irregular = map[string]string{
 		"child":  "children",
 		"die":    "dice",
 		"foot":   "feet",
@@ -206,6 +209,12 @@ var (
 
 // Pluralize generates the plurals of nouns
 func Pluralize(word string) string {
+	if val, ok := pluralForms[word]; ok {
+		return val
+	}
+	if val, ok := singularForms[word]; ok {
+		return val
+	}
 	if val, ok := irregular[word]; ok {
 		return val
 	}

@@ -2,6 +2,33 @@ package inflect
 
 import "testing"
 
+func TestPluralWhenItsAlreadyPluralForm(t *testing.T) {
+	for s, p := range pluralForms {
+		got := Pluralize(s)
+		if got != p {
+			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
+		}
+	}
+}
+
+func TestPluralWhenSingularAndPluralAreTheSame(t *testing.T) {
+	for s, p := range singularForms {
+		got := Pluralize(s)
+		if got != p {
+			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
+		}
+	}
+}
+
+func TestPluralIrregularNouns(t *testing.T) {
+	for s, p := range irregular {
+		got := Pluralize(s)
+		if got != p {
+			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
+		}
+	}
+}
+
 func TestPluralAddingSToTheEnd(t *testing.T) {
 	nouns := map[string]string{
 		"book":       "books",
@@ -338,15 +365,6 @@ func TestPluralEndingWithXis(t *testing.T) {
 		"axis": "axes",
 	}
 	for s, p := range nouns {
-		got := Pluralize(s)
-		if got != p {
-			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
-		}
-	}
-}
-
-func TestPluralIrregularNouns(t *testing.T) {
-	for s, p := range irregular {
 		got := Pluralize(s)
 		if got != p {
 			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
