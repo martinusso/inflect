@@ -31,7 +31,7 @@ func TestPluralAddingSToTheEnd(t *testing.T) {
 	}
 
 	for word, expected := range nouns {
-		got := Plural(word)
+		got := Pluralize(word)
 		if got != expected {
 			t.Errorf("Expected '%s' got '%s'", expected, got)
 		}
@@ -113,7 +113,7 @@ func TestPluralMostNounsThatEndIn_ch_sh_s_x_z(t *testing.T) {
 		"waltz":   "waltzes",
 	}
 	for s, p := range nouns {
-		got := Plural(s)
+		got := Pluralize(s)
 		if got != p {
 			t.Errorf("Expected '%s' got '%s'", p, got)
 		}
@@ -169,7 +169,7 @@ func TestPluralEndingWithConsonantPlusY(t *testing.T) {
 	}
 
 	for s, p := range nouns {
-		got := Plural(s)
+		got := Pluralize(s)
 		if got != p {
 			t.Errorf("Expected '%s' got '%s'", p, got)
 		}
@@ -199,7 +199,7 @@ func TestPluralEndingWithVowelPlusY(t *testing.T) {
 		"way":      "ways",
 	}
 	for s, p := range nouns {
-		got := Plural(s)
+		got := Pluralize(s)
 		if got != p {
 			t.Errorf("Expected '%s' got '%s'", p, got)
 		}
@@ -225,7 +225,7 @@ func TestPluralEndingWithFeOrF(t *testing.T) {
 		"wolf":  "wolves",
 	}
 	for s, p := range nouns {
-		got := Plural(s)
+		got := Pluralize(s)
 		if got != p {
 			t.Errorf("Expected '%s' got '%s'", p, got)
 		}
@@ -267,7 +267,7 @@ func TestPluralEndingWithO(t *testing.T) {
 		"zoo":       "zoos",
 	}
 	for s, p := range nouns {
-		got := Plural(s)
+		got := Pluralize(s)
 		if got != p {
 			t.Errorf("Expected '%s' got '%s'", p, got)
 		}
@@ -281,7 +281,7 @@ func TestPluralEndingWithOn(t *testing.T) {
 		"automaton":  "automata",
 	}
 	for s, p := range nouns {
-		got := Plural(s)
+		got := Pluralize(s)
 		if got != p {
 			t.Errorf("Expected '%s' got '%s'", p, got)
 		}
@@ -303,7 +303,7 @@ func TestPluralEndingWithUm(t *testing.T) {
 		"stadium":    "stadiums",
 	}
 	for s, p := range nouns {
-		got := Plural(s)
+		got := Pluralize(s)
 		if got != p {
 			t.Errorf("Expected '%s' got '%s'", p, got)
 		}
@@ -312,7 +312,7 @@ func TestPluralEndingWithUm(t *testing.T) {
 
 func TestPluralIrregularNouns(t *testing.T) {
 	for s, p := range irregular {
-		got := Plural(s)
+		got := Pluralize(s)
 		if got != p {
 			t.Errorf("Expected '%s' got '%s'", p, got)
 		}

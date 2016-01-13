@@ -201,8 +201,8 @@ var (
 	}
 )
 
-// Plural generates the plurals of nouns
-func Plural(word string) string {
+// Pluralize generates the plurals of nouns
+func Pluralize(word string) string {
 	if val, ok := irregular[word]; ok {
 		return val
 	}
