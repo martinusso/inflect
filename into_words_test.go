@@ -61,6 +61,7 @@ func TestHundreds(t *testing.T) {
 
 func TestUpThousand(t *testing.T) {
 	upThousands := map[float64]string{
+		1000:      "one thousand",
 		1984:      "one thousand, nine hundred and eighty-four",
 		510072000: "five hundred and ten million, seventy-two thousand",
 	}
