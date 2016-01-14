@@ -8,9 +8,9 @@
 
 ## IntoWords()
 
-`func IntoWords(number float64) string`
-
 IntoWords convert numbers (float64) to words
+
+```go func IntoWords(number float64) string ```
 
 ```go
 got := IntoWords(42)  // -> forty-two
