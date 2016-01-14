@@ -38,10 +38,19 @@ var (
 	}
 )
 
-// Asciify replaces a set of accented characters with ascii equivalents
-func Asciify(word string) string {
+// Transliterate replaces non-ASCII characters with an ASCII approximation, or if none exists, a replacement character which defaults to “?”.
+func Transliterate(word string) string {
 	for repl, regex := range transliterations {
 		word = regex.ReplaceAllString(word, repl)
 	}
-	return word
+
+	var safe string
+	for _, s := range word {
+		if int(s) >= 32 && int(s) <= 126 {
+			safe += string(s)
+		} else {
+			safe += "?"
+		}
+	}
+	return safe
 }
