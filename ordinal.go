@@ -1,6 +1,9 @@
 package inflect
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 const (
 	st = "st"
@@ -29,4 +32,10 @@ func Ordinal(number int) string {
 
 func abs(number int) int {
 	return int(math.Abs(float64(number)))
+}
+
+// Ordinalize turns a number into an ordinal string
+func Ordinalize(number int) string {
+	ordinal := Ordinal(number)
+	return fmt.Sprintf("%d%s", number, ordinal)
 }
