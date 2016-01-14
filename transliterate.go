@@ -45,12 +45,16 @@ func Transliterate(word string) string {
 	}
 
 	var safe string
-	for _, s := range word {
-		if int(s) >= 32 && int(s) <= 126 {
-			safe += string(s)
+	for _, r := range word {
+		if isAscii(r) {
+			safe += string(r)
 		} else {
 			safe += "?"
 		}
 	}
 	return safe
+}
+
+func isAscii(s rune) bool {
+	return int(s) >= 32 && int(s) <= 126
 }
