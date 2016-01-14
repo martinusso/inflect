@@ -2,8 +2,17 @@ package inflect
 
 import "testing"
 
-func TestPluralWhenItsAlreadyPluralForm(t *testing.T) {
-	for s, p := range pluralForms {
+func TestPluralIrregularNouns(t *testing.T) {
+	for s, p := range irregulars {
+		got := Pluralize(s)
+		if got != p {
+			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
+		}
+	}
+}
+
+func TestPluralWhenOnlyPluralExists(t *testing.T) {
+	for s, p := range onlyPluralForms {
 		got := Pluralize(s)
 		if got != p {
 			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
@@ -12,7 +21,7 @@ func TestPluralWhenItsAlreadyPluralForm(t *testing.T) {
 }
 
 func TestPluralWhenSingularAndPluralAreTheSame(t *testing.T) {
-	for s, p := range singularForms {
+	for s, p := range unchanging {
 		got := Pluralize(s)
 		if got != p {
 			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
@@ -20,8 +29,8 @@ func TestPluralWhenSingularAndPluralAreTheSame(t *testing.T) {
 	}
 }
 
-func TestPluralIrregularNouns(t *testing.T) {
-	for s, p := range irregular {
+func TestPluralOfExceptions(t *testing.T) {
+	for s, p := range exceptions {
 		got := Pluralize(s)
 		if got != p {
 			t.Errorf("Expected '%s' as plural of '%s', got '%s'", p, s, got)
@@ -67,6 +76,9 @@ func TestPluralAddingSToTheEnd(t *testing.T) {
 
 		"balloon": "balloons",
 		"carton":  "cartons",
+
+		"genie": "genies",
+		"atlas": "atlases",
 	}
 
 	for s, p := range nouns {
@@ -79,6 +91,7 @@ func TestPluralAddingSToTheEnd(t *testing.T) {
 
 func TestPluralMostNounsThatEndIn_ch_sh_s_x_z(t *testing.T) {
 	nouns := map[string]string{
+		"yes":     "yeses",
 		"annex":   "annexes",
 		"complex": "complexes",
 		"duplex":  "duplexes",
@@ -150,6 +163,12 @@ func TestPluralMostNounsThatEndIn_ch_sh_s_x_z(t *testing.T) {
 		"klutz":   "klutzes",
 		"topaz":   "topazes",
 		"waltz":   "waltzes",
+
+		"abacus":  "abacuses",
+		"crocus":  "crocuses",
+		"octopus": "octopuses", // (not octopi, since octopus is from the Greek language),
+		"rhombus": "rhombuses",
+		"walrus":  "walruses",
 	}
 	for s, p := range nouns {
 		got := Pluralize(s)

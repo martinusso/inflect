@@ -1,13 +1,53 @@
-// References:
-// http://www.enchantedlearning.com/grammar/partsofspeech/nouns/plurals/
-
 package inflect
 
 import "strings"
 
 var (
-	// It´s already plural
-	pluralForms = map[string]string{
+	// Irregular Plurals of Nouns
+	irregulars = map[string]string{
+		"child":  "children",
+		"die":    "dice",
+		"foot":   "feet",
+		"goose":  "geese",
+		"louse":  "lice",
+		"man":    "men",
+		"mouse":  "mice",
+		"person": "people",
+		"that":   "those",
+		"this":   "these",
+		"tooth":  "teeth",
+		"woman":  "women",
+	}
+
+	// Singular and plural are the same
+	unchanging = map[string]string{
+		"advice":      "advice",
+		"aircraft":    "aircraft",
+		"bison":       "bison",
+		"corn":        "corn",
+		"deer":        "deer",
+		"equipment":   "equipment",
+		"evidence":    "evidence",
+		"fish":        "fish",
+		"gold":        "gold",
+		"information": "information",
+		"jewelry":     "jewelry",
+		"kin":         "kin",
+		"legislation": "legislation",
+		"luck":        "luck",
+		"luggage":     "luggage",
+		"moose":       "moose",
+		"music":       "music",
+		"offspring":   "offspring",
+		"sheep":       "sheep",
+		"silver":      "silver",
+		"swine":       "swine",
+		"trout":       "trout",
+		"wheat":       "wheat",
+	}
+
+	// Only the plural exists
+	onlyPluralForms = map[string]string{
 		"athletics":       "athletics",
 		"barracks":        "barracks",
 		"bellows":         "bellows",
@@ -57,48 +97,7 @@ var (
 		"words":           "words",
 	}
 
-	// Singular and plural are the same
-	singularForms = map[string]string{
-		"advice":      "advice",
-		"aircraft":    "aircraft",
-		"bison":       "bison",
-		"corn":        "corn",
-		"deer":        "deer",
-		"equipment":   "equipment",
-		"evidence":    "evidence",
-		"fish":        "fish",
-		"gold":        "gold",
-		"information": "information",
-		"jewelry":     "jewelry",
-		"kin":         "kin",
-		"legislation": "legislation",
-		"luck":        "luck",
-		"luggage":     "luggage",
-		"moose":       "moose",
-		"music":       "music",
-		"offspring":   "offspring",
-		"sheep":       "sheep",
-		"silver":      "silver",
-		"swine":       "swine",
-		"trout":       "trout",
-		"wheat":       "wheat",
-	}
-	// Irregular Plurals of Nouns
-	irregular = map[string]string{
-		"child":  "children",
-		"die":    "dice",
-		"foot":   "feet",
-		"goose":  "geese",
-		"louse":  "lice",
-		"man":    "men",
-		"mouse":  "mice",
-		"person": "people",
-		"that":   "those",
-		"this":   "these",
-		"tooth":  "teeth",
-		"woman":  "women",
-		"ox":     "oxen",
-
+	exceptions = map[string]string{
 		// ending in f, fe
 		"belief":       "beliefs",
 		"chef":         "chefs",
@@ -108,6 +107,7 @@ var (
 		"gulf":         "gulfs",
 		"handkerchief": "handkerchiefs",
 		"kerchief":     "kerchiefs",
+		"lowlife":      "lowlifes",
 		"mischief":     "mischiefs",
 		"muff":         "muffs",
 		"oaf":          "oafs",
@@ -133,8 +133,11 @@ var (
 		"volcano":  "volcanoes",
 		"zero":     "zeroes",
 
-		// special case for ending with Y
-		"quiz": "quizzes",
+		// ending with Y
+		"soliloquy": "soliloquies",
+		"trilby":    "trilbys",
+		"quiz":      "quizzes",
+		"ley":       "leyes",
 
 		"alga":     "algae",
 		"alumna":   "alumnae",
@@ -150,14 +153,11 @@ var (
 		"phenomenon": "phenomena",
 		"polyhedron": "polyhedra",
 
-		// ending with UM
-		"album":   "albums",
+		// ending with 'um'
 		"stadium": "stadiums",
+		"album":   "albums",
 
-		// ending with Y
-		"soliloquy": "soliloquies",
-		"trilby":    "trilbys",
-
+		"ox":       "oxen",
 		"appendix": "appendices", // appendixes is acceptable
 		"vertex":   "vertices",
 		"vortex":   "vortices",
@@ -165,85 +165,70 @@ var (
 		"graffito": "graffiti",
 		"numen":    "numina",
 		"atman":    "atmas",
-		"lowlife":  "lowlifes",
 		"rom":      "roma",
 		"carmen":   "carmina",
 
 		// Ends with 'us'
-		"alumnus":  "alumni",
-		"bacillus": "bacilli",
-		"cactus":   "cacti", // cactuses is acceptable
-		"focus":    "foci",
-		"fungus":   "fungi",
-		"locus":    "loci",
-		"nucleus":  "nuclei",
-		"radius":   "radii",
-		"stimulus": "stimuli",
-		"syllabus": "syllabi",
-		"terminus": "termini",
-		"torus":    "tori",
-
-		"abacus":  "abacuses",
-		"corpus":  "corpora",
-		"crocus":  "crocuses",
-		"genus":   "genera",
-		"octopus": "octopuses", // (not octopi, since octopus is from the Greek language),
-		"opus":    "opera",
-		"rhombus": "rhombuses",
-		"walrus":  "walruses",
-
-		"datum":  "data",
-		"mythos": "mythoi",
-		"testis": "testes",
-
-		"yes":          "yeses",
-		"genie":        "genies",
-		"ganglion":     "ganglia",
-		"occiput":      "occipita",
-		"penis":        "penes",
-		"atlas":        "atlases",
+		"alumnus":      "alumni",
+		"bacillus":     "bacilli",
+		"cactus":       "cacti", // cactuses is acceptable
 		"CamelOctopus": "CamelOctopi",
-		"ley":          "leyes",
+		"focus":        "foci",
+		"fungus":       "fungi",
+		"locus":        "loci",
+		"nucleus":      "nuclei",
+		"radius":       "radii",
+		"stimulus":     "stimuli",
+		"syllabus":     "syllabi",
+		"terminus":     "termini",
+		"torus":        "tori",
+
+		"corpus": "corpora",
+		"genus":  "genera",
+		"opus":   "opera",
+
+		"testis": "testes",
+		"penis":  "penes",
+
+		"mythos": "mythoi",
+
+		"ganglion": "ganglia",
+		"occiput":  "occipita",
 	}
 )
 
 // Pluralize generates the plurals of nouns
 func Pluralize(word string) string {
-	if val, ok := pluralForms[word]; ok {
+	if val, ok := irregulars[word]; ok {
 		return val
 	}
-	if val, ok := singularForms[word]; ok {
+	if val, ok := onlyPluralForms[word]; ok {
 		return val
 	}
-	if val, ok := irregular[word]; ok {
+	if val, ok := unchanging[word]; ok {
+		return val
+	}
+	if val, ok := exceptions[word]; ok {
 		return val
 	}
 
 	switch {
 	case endWithConsonantPlusY(word):
 		return word[:len(word)-1] + "ies"
-
 	case endIn(word, "f"):
 		return word[:len(word)-1] + "ves"
-
 	case endIn(word, "fe"):
 		return word[:len(word)-2] + "ves"
-
 	case endIn(word, "um"):
 		return word[:len(word)-2] + "a"
-
 	case endIn(word, "psis"):
-		return word[:len(word)-3] + "ses"
-
+		return word[:len(word)-4] + "pses"
 	case endIn(word, "sis"):
 		return word[:len(word)-3] + "ses"
-
 	case endIn(word, "xis"):
 		return word[:len(word)-3] + "xes"
-
 	case endIn(word, "ch", "sh", "s", "x", "z"):
 		return word + "es"
-
 	default:
 		return word + "s"
 	}
