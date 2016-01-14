@@ -38,7 +38,7 @@ var (
 	}
 )
 
-// Transliterate replaces non-ASCII characters with an ASCII approximation, or if none exists, a replacement character which defaults to “?”.
+// Transliterate replaces non-ASCII characters with an ASCII approximation, or if none exists, to “?”.
 func Transliterate(word string) string {
 	for repl, regex := range transliterations {
 		word = regex.ReplaceAllString(word, repl)
