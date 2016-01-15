@@ -1,16 +1,16 @@
 package inflect
 
-import "strings"
+import "unicode"
 
 // Underscore makes an underscored/lowercase string
 func Underscore(s string) string {
+	sep := "_"
 	var safe string
 	for i, r := range s {
-		s := string(r)
-		if s == strings.ToUpper(s) && i > 0 {
-			safe += "_"
+		if unicode.IsUpper(r) && i > 0 {
+			safe += sep
 		}
-		safe += s
+		safe += string(r)
 	}
-	return ParameterizeSep(safe, "_")
+	return ParameterizeSep(safe, sep)
 }
