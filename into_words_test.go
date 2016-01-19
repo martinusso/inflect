@@ -64,6 +64,7 @@ func TestUpThousand(t *testing.T) {
 		1000:      "one thousand",
 		1984:      "one thousand, nine hundred and eighty-four",
 		510072000: "five hundred and ten million, seventy-two thousand",
+		775398007: "seven hundred and seventy-five million, three hundred and ninety-eight thousand, seven",
 	}
 
 	for key, value := range upThousands {

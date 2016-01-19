@@ -129,8 +129,8 @@ func getUpThousand(n float64) []string {
 	for i := 0; n >= 1; i++ {
 		var r float64
 		n, r = math.Modf(n / 1000)
-
-		w := writeOutNumbersInWords(r * 1000)
+		r = round(r * 1000)
+		w := writeOutNumbersInWords(r)
 		if (len(w) == 0) || (len(w) == 1 && w[0] == "") {
 			continue
 		}
