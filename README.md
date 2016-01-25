@@ -81,7 +81,7 @@ func ParameterizeSep(s, sep string) string
 ```
 
 ```go
-got := ParameterizeSep("J. R. R. Tolkien")  // -> "j_r_r_tolkien"
+got := ParameterizeSep("J. R. R. Tolkien", "_")  // -> "j_r_r_tolkien"
 ```
 
 
