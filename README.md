@@ -1,6 +1,7 @@
 # inflect
 
 [![Circle CI](https://circleci.com/gh/martinusso/inflect.svg?style=svg)](https://circleci.com/gh/martinusso/inflect)
+[![Circle CI](https://circleci.com/gh/martinusso/inflect.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/martinusso/inflect)
 [![Build Status](https://travis-ci.org/martinusso/inflect.svg?branch=master)](https://travis-ci.org/martinusso/inflect)
 [![Coverage Status](https://coveralls.io/repos/github/martinusso/inflect/badge.svg?branch=master)](https://coveralls.io/github/martinusso/inflect?branch=master)
 [![GoDoc](https://godoc.org/github.com/martinusso/inflect?status.svg)](https://godoc.org/github.com/martinusso/inflect)
